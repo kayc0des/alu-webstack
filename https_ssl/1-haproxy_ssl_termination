@@ -6,7 +6,7 @@ frontend www-http
     mode http
     default_backend web-backend
 frontend www-https
-    bind *:443 ssl crt /etc/haproxy/realflore.tech.pem
+    bind *:443 ssl crt /etc/haproxy/kaycodes.tech.pem
     http-request set-header X-Forwarded-Proto https
     acl letsencrypt-acl path_beg /.well-known/acme-challenge/
     use_backend letsencrypt-backend if letsencrypt-acl
@@ -15,7 +15,7 @@ frontend www-https
 backend web-backend
     redirect scheme https unless { ssl_fc }
     balance roundrobin
-    server 5472-web-01 54.242.147.163:80 check
-    server 5472-web-02 34.229.200.198:80 check
+    server 5456-web-01 3.91.233.84:80 check
+    server 5456-web-02 18.234.231.105:80 check
 backend letsencrypt-backend
    server letsencrypt 127.0.0.1:54321
